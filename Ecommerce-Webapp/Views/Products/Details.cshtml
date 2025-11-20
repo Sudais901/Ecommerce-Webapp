@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Products";
+   
+}
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6 text-center">
+            <h2 class="mb-3">@Model.Name</h2>
+            <img src="~/images/@Model.Img" alt="@Model.Name" class="img-fluid mb-3 rounded" />
+            <p class="fs-5">@Model.Desc</p>
+            <p class="fs-5">$@Model.price</p>
+            <button class="btn btn-primary">Add to Cart</button>
+        </div>
+    </div>
+</div>
