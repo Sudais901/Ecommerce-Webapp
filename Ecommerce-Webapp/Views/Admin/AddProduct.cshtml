@@ -1,0 +1,54 @@
+﻿
+@{
+    Layout = "_AuthLayout";
+    ViewData["Title"] = "Add Product";
+   
+}
+
+@model AddProductViewModel
+
+<div class="container my-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+
+            <div class="card shadow-sm p-4">
+                <h2 class="text-center mb-4">Add Product</h2>
+
+                <form asp-action="AddProduct" method="post" enctype="multipart/form-data">
+
+                    <div class="mb-3">
+                        <label asp-for="Pname" class="form-label"></label>
+                        <input asp-for="Pname" class="form-control" />
+                        <span asp-validation-for="Pname" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Description" class="form-label"></label>
+                        <textarea asp-for="Description" rows="3" class="form-control"></textarea>
+                        <span asp-validation-for="Description" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label asp-for="Price" class="form-label"></label>
+                        <input asp-for="Price" class="form-control" />
+                        <span asp-validation-for="Price" class="text-danger"></span>
+                    </div>
+
+                    <!-- MULTIPLE IMAGE UPLOAD -->
+                    <div class="mb-3">
+                        <label class="form-label">Product Images (multiple allowed)</label>
+                        <input type="file" name="Images" multiple class="form-control" />
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-primary w-100 py-2">
+                            Add Product
+                        </button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>

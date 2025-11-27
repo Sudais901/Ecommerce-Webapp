@@ -1,72 +1,31 @@
-﻿  @{
+﻿@using System.Globalization
+@{
       ViewData["Title"] = "Products";
   }
-<div class="container mt-4">
-    <h2 class="mb-4 text-center text-md-start fs-2 fs-md-1">Our Product</h2>
+@model List<Product>
 
-    <div class="row">
-        <!-- Product 1 -->
-        <div class="col-md-6 mb-4">
-            <div class="card p-3 shadow-sm border-0">
-                <div class="row g-0 align-items-center">
-                    <div class="col-4">
-                        <img src="~/images/product1.jpg" class="img-fluid rounded" alt="Product 1">
-                    </div>
-                    <div class="col-8">
-                        <h5 class="fw-bold">Product 1</h5>
-                        <p class="text-muted mb-1"><span class="text-danger fw-bold">$499.00</span></p>
-                        <p class="text-warning mb-1">⭐ 4.5 | 120 orders | <span class="text-success">Free Shipping</span></p>
-                        <p class="text-secondary small mb-2">
-                            This is Product 1 description. It’s high quality and best in class.
-                        </p>
-                        <a asp-controller="Products" asp-action="Details" asp-route-id="1" class="btn btn-primary btn-sm">View details</a>
+<h2 class="my-4 text-center">Products</h2>
 
+<div class="container">
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
+        @foreach (var p in Model)
+        {
+            <div class="col">
+                <div class="card h-100">
+                    <img src="@p.ImagePath" class="card-img-top" alt="@p.Pname" style="height:220px; object-fit:cover;">
+                    <div class="card-body">
+                        <h5 class="card-title">@p.Pname</h5>
+                        <p class="card-text">@p.Description</p>
                     </div>
+                    <div class="card-footer">
+                        <strong>Price: </strong>
+                        @(p.Price.HasValue
+                            ? p.Price.Value.ToString("C", CultureInfo.GetCultureInfo("en-US"))
+                            : "N/A")
+                    </div>
+                    <a asp-controller="Products" asp-action="Details" asp-route-id="@p.ProductId " class="btn btn-primary btn-sm">View details</a>
                 </div>
             </div>
-        </div>
-
-        <!-- Product 2 -->
-        <div class="col-md-6 mb-4">
-            <div class="card p-3 shadow-sm border-0">
-                <div class="row g-0 align-items-center">
-                    <div class="col-4">
-                        <img src="~/images/product2.jpg" class="img-fluid rounded" alt="Product 2">
-                    </div>
-                    <div class="col-8">
-                        <h5 class="fw-bold">Product 2</h5>
-                        <p class="text-muted mb-1"><span class="text-danger fw-bold">$699.00</span></p>
-                        <p class="text-warning mb-1">⭐ 4.7 | 230 orders | <span class="text-success">Free Shipping</span></p>
-                        <p class="text-secondary small mb-2">
-                            This is Product 2 description. It’s stylish, powerful, and affordable.
-                        </p>
-                        <a asp-controller="Products" asp-action="Details" asp-route-id="2" class="btn btn-primary btn-sm">View details</a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Product 3 -->
-        <div class="col-md-6 mb-4">
-            <div class="card p-3 shadow-sm border-0">
-                <div class="row g-0 align-items-center">
-                    <div class="col-4">
-                        <img src="~/images/product3.jpg" class="img-fluid rounded" alt="Product 3">
-                    </div>
-                    <div class="col-8">
-                        <h5 class="fw-bold">Product 3</h5>
-                        <p class="text-muted mb-1"><span class="text-danger fw-bold">$899.00</span></p>
-                        <p class="text-warning mb-1">⭐ 4.9 | 310 orders | <span class="text-success">Free Shipping</span></p>
-                        <p class="text-secondary small mb-2">
-                            This is Product 3 description. It’s durable, modern, and top-rated.
-                        </p>
-                        <a asp-controller="Products" asp-action="Details" asp-route-id="1" class="btn btn-primary btn-sm">View details</a>
-
-                    </div>
-                </div>
-            </div>
-        </div>
+        }
     </div>
 </div>
-

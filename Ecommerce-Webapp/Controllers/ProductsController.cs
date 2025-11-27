@@ -1,36 +1,44 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Ecommerce_Webapp.Models;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 
 namespace Ecommerce_App.Controllers
 {
     public class ProductsController : Controller
     {
+        private readonly EcommerceContext _context;
+
+        public ProductsController(EcommerceContext context)
+        {
+            _context = context;
+        }
+        [Authorize(Roles = "User")]
         public IActionResult Index()
         {
-            return View();
+            var products = _context.Products.ToList();
+            return View(products);
         }
 
-
-        public IActionResult Details(int id)
+        [Authorize(Roles = "User")]
+        public async Task<IActionResult> Details(int id)
         {
-            var products = new List<dynamic>
-    {
-        new { Id = 1, Name = "Product 1", Img = "product1.jpg", Desc = " This is Product 1 description. It’s high quality and best in class.",price=499.00 },
-        new { Id = 2, Name = "Product 2", Img = "product2.jpg", Desc = " This is Product 2 description. It’s stylish, powerful, and affordable.,",price=499.00  },
-        new { Id = 3, Name = "Product 3", Img = "product3.jpg", Desc = " This is Product 3 description. It’s durable, modern, and top-rated.",price=899.00 }
-    };
 
-
-            // Sample products list in ViewBag
-            var product = products.FirstOrDefault(p => p.Id == id);
+            var product = await _context.Products
+                .Include(p => p.ProductImages)
+                .FirstOrDefaultAsync(p => p.ProductId == id);
 
             if (product == null)
             {
-                return NotFound(); // Or redirect to a page saying "Product not found"
+                return NotFound();
             }
+           
 
-            // Pass the selected product to the view
             return View(product);
+
         }
+    
     }
 }

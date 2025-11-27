@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Ecommerce_Webapp.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ecommerce_Webapp.Controllers
@@ -12,7 +13,7 @@ namespace Ecommerce_Webapp.Controllers
         {
             _logger = logger;
         }
-
+        [Authorize(Roles = "User")]
         public IActionResult Index()
         {
             return View();

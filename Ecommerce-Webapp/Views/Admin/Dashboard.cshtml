@@ -1,0 +1,46 @@
+﻿@{
+    Layout = "_AuthLayout"; 
+  
+}
+
+<div class="container-fluid mt-4">
+    <h2 class="mb-4">Admin Dashboard</h2>
+
+    <div class="row g-3">
+
+        <!-- Card 1: Products -->
+        <div class="col-md-4">
+            <div class="card text-white bg-primary shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title">Products</h5>
+                    <p class="card-text">Manage all products in the store</p>
+                    <a href="/Admin/AddProduct" class="btn btn-light mt-2">Add Product</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2: Orders -->
+        <div class="col-md-4">
+            <div class="card text-white bg-success shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title">Orders</h5>
+                    <p class="card-text">View and manage customer orders</p>
+                    <a href="/Orders/Index" class="btn btn-light mt-2">View Orders</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3: Users -->
+        <div class="col-md-4">
+            <div class="card text-white bg-warning shadow-sm h-100">
+                <div class="card-body d-flex flex-column justify-content-between">
+                    <h5 class="card-title">Users</h5>
+                    <p class="card-text">Manage registered users</p>
+                    <a href="/Users/Index" class="btn btn-light mt-2">View Users</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+

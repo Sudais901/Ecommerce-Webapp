@@ -1,0 +1,41 @@
+﻿@{
+    Layout = "_AuthLayout";
+    ViewData["Title"] = "Login";
+}
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="card shadow-lg p-4" style="max-width: 450px; width: 100%; border-radius: 15px;">
+
+        <h2 class="text-center mb-4">Login</h2>
+
+        <form method="post" asp-action="Login">
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Username</label>
+                <input type="text" name="username" class="form-control form-control-lg" required />
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label fw-bold">Password</label>
+                <input type="password" name="password" class="form-control form-control-lg" required />
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100 btn-lg mt-2" style="border-radius: 10px;">
+                Login
+            </button>
+        </form>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger mt-3">@ViewBag.Error</div>
+        }
+
+        <div class="text-center mt-3">
+            <p class="mb-1">Don't have an account?</p>
+            <a asp-action="Register" class="btn btn-outline-secondary btn-lg w-100" style="border-radius: 10px;">
+                Register
+            </a>
+        </div>
+
+    </div>
+</div>
+
